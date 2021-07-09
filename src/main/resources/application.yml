@@ -1,0 +1,6 @@
+api:
+  key: 3d6324947ca5bccfffed581c27a8eba8
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

@@ -6,6 +6,8 @@ target/
 !**/src/test/**/target/
 terraform/.terraform
 terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
 
 ### STS ###
 .apt_generated

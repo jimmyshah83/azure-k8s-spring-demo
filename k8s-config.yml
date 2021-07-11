@@ -16,9 +16,12 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
         - name: marketdata
-          image: myk8scontainercontainerregistry.azurecr.io/marketdata:v1
+          image: myk8scontainercontainerregistry.azurecr.io/marketdata:v2
           ports:
             - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: api-key
 ---
 apiVersion: v1
 kind: Service

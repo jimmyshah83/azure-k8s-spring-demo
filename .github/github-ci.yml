@@ -7,6 +7,12 @@ on:
       - '.github/github**'
 
 env:
+  APP_NAME: marketdata
+
+  AZURE_RESOURCE_GROUP: myK8sResourceGroup
+  AZURE_CONTAINER_REGISTRY_NAME: myK8sContainerRegistry
+  AZURE_KUBERNETES_CLUSTER_NAME: myK8sCluster
+
   SPRING_PROFILES_ACTIVE_DEPLOY: cloud
 
 jobs:
@@ -34,7 +40,7 @@ jobs:
       - name: 'Save artifact'
         uses: actions/upload-artifact@v1
         with:
-          name: marketdata
+          name: ${{ env.APP_NAME }}
           path: target
 
       - name: 'Azure login'
@@ -47,21 +53,21 @@ jobs:
         run: |
           pushd terraform
             terraform init
-            terraform refresh
             terraform plan
             terraform apply --auto-approve
           popd
 
       - name: 'Push to Azure Container Registry'
         run: |
-          docker build -t marketdata .
-          az acr login --name myK8sContainerRegistry
-          docker tag marketdata:latest myk8scontainerregistry.azurecr.io/marketdata:latest
-          docker push myk8scontainerregistry.azurecr.io/marketdata:latest
-          registry_images=$(az acr repository list --name myk8scontainerregistry --output table)
+          docker build -t ${{ env.APP_NAME }} .
+          az acr login --name ${{ env.AZURE_CONTAINER_REGISTRY_NAME }}
+          docker tag ${{ env.APP_NAME }}:latest ${{ env.AZURE_CONTAINER_REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:latest
+          docker push ${{ env.AZURE_CONTAINER_REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:latest
+          registry_images=$(az acr repository list --name ${{ env.AZURE_CONTAINER_REGISTRY_NAME }} --output table)
           echo "Registry image list = $registry_images"
 
       - name: 'Deploy to Azure Kubernetes Cluster'
         run: |
-          az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+          az aks update --name ${{ env.AZURE_KUBERNETES_CLUSTER_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --attach-acr ${{ env.AZURE_CONTAINER_REGISTRY_NAME }}
+          az aks get-credentials --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --name ${{ env.AZURE_KUBERNETES_CLUSTER_NAME }}
           kubectl apply -f k8s-config.yml

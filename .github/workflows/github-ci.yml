@@ -64,8 +64,8 @@ jobs:
         run: |
           docker build -t ${{ env.APP_NAME }} .
           az acr login --name ${{ env.AZURE_CONTAINER_REGISTRY_NAME }}
-          docker tag ${{ env.APP_NAME }}:latest ${{ env.AZURE_CONTAINER_REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:latest
-          docker push ${{ env.AZURE_CONTAINER_REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:latest
+          docker tag ${{ env.APP_NAME }}:latest myk8scontainerregistry.azurecr.io/${{ env.APP_NAME }}:latest
+          docker push myk8scontainerregistry.azurecr.io/${{ env.APP_NAME }}:latest
           registry_images=$(az acr repository list --name ${{ env.AZURE_CONTAINER_REGISTRY_NAME }} --output table)
           echo "Registry image list = $registry_images"
 

@@ -14,23 +14,23 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "rg" {
-  name     = "myK8sResourceGroup"
-  location = "eastus"
+locals {
+  resource_group_name   = "myK8sResourceGroup"
+  resource_group_location   = "eastus"
 }
 
 resource "azurerm_container_registry" "acr" {
   name                     = "myK8sContainerRegistry"
-  resource_group_name      = azurerm_resource_group.rg.name
-  location                 = azurerm_resource_group.rg.location
+  resource_group_name      = local.resource_group_name
+  location                 = local.resource_group_location
   sku                      = "Basic"
   admin_enabled            = false
 }
 
 resource "azurerm_kubernetes_cluster" "akc" {
   name                = "myK8sCluster"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = local.resource_group_name
+  location            = local.resource_group_location
   dns_prefix          = "myK8sCluster"
 
   # 2 vcpus, 4 GiB memory

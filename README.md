@@ -13,9 +13,9 @@ Terraform has a [registry](https://registry.terraform.io/) that provides plugins
 2. azurerm_container_registry: to create Azure container registry (ACR)
 2. azurerm_kubernetes_cluster: to create Azure Kubernetes cluster (AKS)
 
-#### Gitlab CI/CD
-Continuous integration and deployment using Gitlab. One can use any CI/CD platform for this. \
-Please note: API Key secret is manually created in Kubernetes cluster
+#### CI/CD
+Continuous integration and deployment has been implemented using Github actions however, one can use any CI/CD platform for this. \
+Please note: API Key secret has been manually created in Kubernetes cluster
 
 #### Deploying application manually
 1. Build an image using `mvn spring-boot:build-image`

@@ -16,7 +16,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
         - name: marketdata
-          image: myk8scontainerregistry.azurecr.io/marketdata:v2
+          image: k8scontainerregistry.azurecr.io/marketdata:latest
           ports:
             - containerPort: 8080
           envFrom:

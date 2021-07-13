@@ -2,6 +2,7 @@
 A sample project to demonstrate deploying a containerized application to Azure Kubernetes Service and using Terraform to manage the infrastructure.
 
 #### Azure Resources
+<u>Storage Account</u>: Data storage. Prmarily used to store terraform state \
 <u>Resource Group</u>: Logical grouping of a collection Azure resources \
 <u>Container Registry</u>: Build, store, and manage container images \
 <u>Kubernetes Cluster</u>: Kubernetes on Azure

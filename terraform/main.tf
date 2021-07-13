@@ -7,6 +7,13 @@ terraform {
     }
   }
 
+  backend "azurerm" {
+    resource_group_name  = "k8sResourceGroup"
+    storage_account_name = "tfk8ssa"
+    container_name       = "tfsacontainer"
+    key                  = "marketdata.tfstate"
+  }
+
   required_version = ">= 0.14.9"
 }
 
@@ -15,12 +22,12 @@ provider "azurerm" {
 }
 
 locals {
-  resource_group_name   = "myK8sResourceGroup"
+  resource_group_name   = "k8sResourceGroup"
   resource_group_location   = "eastus"
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                     = "myK8sContainerRegistry"
+  name                     = "k8scontainerregistry"
   resource_group_name      = local.resource_group_name
   location                 = local.resource_group_location
   sku                      = "Basic"
@@ -28,10 +35,10 @@ resource "azurerm_container_registry" "acr" {
 }
 
 resource "azurerm_kubernetes_cluster" "akc" {
-  name                = "myK8sCluster"
+  name                = "marketdatacluster"
   resource_group_name = local.resource_group_name
   location            = local.resource_group_location
-  dns_prefix          = "myK8sCluster"
+  dns_prefix          = "marketdatacluster"
 
   # 2 vcpus, 4 GiB memory
   default_node_pool {

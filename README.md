@@ -18,6 +18,12 @@ Terraform has a [registry](https://registry.terraform.io/) that provides plugins
 Continuous integration and deployment has been implemented using Github actions however, one can use any CI/CD platform for this. \
 Please note: API Key secret has been manually created in Kubernetes cluster
 
+Azure has an [issue](https://github.com/Azure/AKS/issues/1517) where the service account cannot update the kubernetes cluster to access registry.
+Follow the steps in the issue to add API permissions to service principle fix this issue \
+`az aks update --name <kubernetes cluster name> 
+         --resource-group <Resource Group name> 
+         --attach-acr <Registry name>`
+
 #### Deploying application manually
 1. Build an image using `mvn spring-boot:build-image`
 2. Deploy resources to Azure using terraform  

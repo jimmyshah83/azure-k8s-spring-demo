@@ -71,6 +71,5 @@ jobs:
 
       - name: 'Deploy to Azure Kubernetes Cluster'
         run: |
-          az aks update --name ${{ env.AZURE_KUBERNETES_CLUSTER_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --attach-acr ${{ env.AZURE_CONTAINER_REGISTRY_NAME }}
           az aks get-credentials --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --name ${{ env.AZURE_KUBERNETES_CLUSTER_NAME }}
           kubectl apply -f k8s-config.yml

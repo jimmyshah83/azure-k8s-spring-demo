@@ -19,13 +19,15 @@ public class HistoricalDataController {
     private String apiKey;
 
     /**
+     *
+     * Get EOD data, for the previous day, for a stock symbol from Market Stack
      * Market stack API documentation: https://marketstack.com/documentation
      *
      * @param symbol Stock symbol
      * @return Latest end of day stock data
      */
     @GetMapping("/eod/latest")
-    public ResponseEntity<Mono<StockDto>> getLatestEodDataData(@RequestParam String symbol) {
+    public ResponseEntity<Mono<StockDto>> getLatestEodData(@RequestParam String symbol) {
         final Mono<StockDto> stockDtoMono = marketStackWebClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/eod/latest")
                         .queryParam("access_key", apiKey)

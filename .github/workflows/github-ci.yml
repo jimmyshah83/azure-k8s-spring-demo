@@ -21,7 +21,7 @@ env:
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
 jobs:
-  package-and-deploy:
+  package-containerize-and-deploy:
     runs-on: ubuntu-latest
 
     steps:

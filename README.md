@@ -2,7 +2,7 @@
 A sample project to demonstrate deploying a containerized application to Azure Kubernetes Service and using Terraform to manage the infrastructure.
 
 #### Azure Resources
-<u>Storage Account</u>: Data storage. Prmarily used to store terraform state \
+<u>Storage Account</u>: Data storage, primarily used to store terraform state \
 <u>Resource Group</u>: Logical grouping of a collection Azure resources \
 <u>Container Registry</u>: Build, store, and manage container images \
 <u>Kubernetes Cluster</u>: Kubernetes on Azure
@@ -47,3 +47,8 @@ Follow the steps in the issue to add API permissions to service principle fix th
    2. Configure kubelet to talk to your cluster
       `az aks get-credentials --resource-group <RG> --name <Cluster name>`
    3. Deploy from ACR to AKC using `kubectl`
+
+#### Application
+http://52.188.131.153/swagger-ui.html
+
+![Application](./assets/application.png)

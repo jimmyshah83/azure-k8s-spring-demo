@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: api-key
+data:
+  api.key: M2Q2MzI0OTQ3Y2E1YmNjZmZmZWQ1ODFjMjdhOGViYTg=
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:

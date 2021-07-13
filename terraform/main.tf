@@ -27,7 +27,7 @@ locals {
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                     = "k8scontainerregistry"
+  name                     = "k8smarketdataregistry"
   resource_group_name      = local.resource_group_name
   location                 = local.resource_group_location
   sku                      = "Basic"

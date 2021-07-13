@@ -8,7 +8,7 @@ env:
   APP_NAME: marketdata
 
   AZURE_RESOURCE_GROUP: k8sResourceGroup
-  AZURE_CONTAINER_REGISTRY_NAME: k8scontainerregistry
+  AZURE_CONTAINER_REGISTRY_NAME: k8smarketdataregistry
   AZURE_KUBERNETES_CLUSTER_NAME: marketdatacluster
 
   SPRING_PROFILES_ACTIVE_DEPLOY: cloud

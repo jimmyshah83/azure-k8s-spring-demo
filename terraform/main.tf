@@ -24,7 +24,7 @@ provider "azurerm" {
 locals {
   resource_group_name   = "k8sResourceGroup"
   resource_group_location   = "eastus"
-  marketdata_api_spec = "../apim/api-spec.json"
+  marketdata_api_spec = "../apim/api-docs.yaml"
 }
 
 resource "azurerm_container_registry" "acr" {
@@ -86,7 +86,7 @@ resource "azurerm_api_management_api" "marketdata-api" {
 
   import {
     content_format = "openapi"
-    content_value  = "http://52.188.131.153/v3/api-docs.yaml"
+    content_value  = file(local.marketdata_api_spec)
   }
   path = ""
 }

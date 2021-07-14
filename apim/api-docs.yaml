@@ -1,0 +1,50 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://52.188.131.153
+  description: Generated server url
+paths:
+  /marketData/eod/latest:
+    get:
+      tags:
+      - historical-data-controller
+      operationId: getLatestEodDataData
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StockDto'
+components:
+  schemas:
+    Stock:
+      type: object
+      properties:
+        open:
+          type: number
+        high:
+          type: number
+        low:
+          type: number
+        close:
+          type: number
+        symbol:
+          type: string
+        exchange:
+          type: string
+    StockDto:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Stock'

@@ -74,4 +74,9 @@ you need to additionally create storage account and storage account container:
    3. Deploy from ACR to AKC using `kubectl`
 
 #### Application
-Below is how a valid `200` and invalid `422` response look like:
+Below you can see a valid `200` and invalid `422` response look like:
+![Valid](./assets/valid.png)
+![Invalid](./assets/invalid.png)
+
+Same from Azure APIM:
+![APIM](./assets/apim.png)

@@ -24,6 +24,7 @@ provider "azurerm" {
 locals {
   resource_group_name   = "k8sResourceGroup"
   resource_group_location   = "eastus"
+  marketdata_api_spec = "../apim/marketdata-api-def.yml"
 }
 
 resource "azurerm_container_registry" "acr" {
@@ -63,4 +64,29 @@ output "client_certificate" {
 output "kube_config" {
   sensitive = true
   value = azurerm_kubernetes_cluster.akc.kube_config_raw
+}
+
+resource "azurerm_api_management" "apim" {
+  name                = "k8s-apim"
+  location            = local.resource_group_location
+  resource_group_name = local.resource_group_name
+  publisher_name      = "Jimmy Shah"
+  publisher_email     = "jimmyshah83@gmail.com"
+
+  sku_name = "Developer_1"
+}
+
+resource "azurerm_api_management_api" "marketdata-api" {
+  name                = "marketdata-api"
+  resource_group_name = local.resource_group_name
+  api_management_name = azurerm_api_management.apim.name
+  revision            = "1"
+  display_name        = "Marketdata API"
+  path                = "api/v1/marketData"
+  protocols           = ["https"]
+
+  import {
+    content_format = "openapi"
+    content_value  = file(local.marketdata_api_spec)
+  }
 }

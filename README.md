@@ -10,7 +10,8 @@ Below is a simple architecture of this application.
 <u>Storage Account</u>: Primarily used to store terraform state after each build \
 <u>Resource Group</u>: Logical grouping of Azure resources \
 <u>Container Registry</u>: Build, store, and manage container images \
-<u>Kubernetes Service</u>: Kubernetes on Azure
+<u>Kubernetes Service</u>: Kubernetes on Azure \
+<u>API Management</u>: Manage and Secure our endpoints
 
 We have manually created the resource group and storage account to hold our Terraform state generated during pipeline builds via below commands: 
 1. Create Resource Group `az group create --location --name <Resource Group name>`
@@ -25,6 +26,8 @@ required to maintain the Azure infrastructure. We create the container registry 
 plugins provided by terraform registry: 
 1. azurerm_container_registry: to create Azure container registry (ACR)
 2. azurerm_kubernetes_cluster: to create Azure Kubernetes cluster (AKS)
+3. azurerm_api_management: to create an API Management Service (APIM)
+4. azurerm_api_management_api: to create an API within an APIM
 
 #### CI/CD
 CI/CD has been implemented using GitHub however, one can use any CI/CD platform. \
@@ -71,6 +74,3 @@ you need to additionally create storage account and storage account container:
    3. Deploy from ACR to AKC using `kubectl`
 
 #### Application
-http://52.188.131.153/swagger-ui.html
-
-![Application](./assets/application.png)

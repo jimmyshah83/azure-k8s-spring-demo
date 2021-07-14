@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/marketData")
+@RequestMapping("/api/v1/marketData")
 @RequiredArgsConstructor
 public class HistoricalDataController {
 

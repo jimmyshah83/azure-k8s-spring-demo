@@ -22,7 +22,7 @@ class HistoricalDataControllerTest {
     public void getHistoricalData_success_test() {
 
         webTestClient.get()
-                .uri("/marketData/eod/latest?symbol=AAPL")
+                .uri("/api/v1/marketData/eod/latest?symbol=AAPL")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().is2xxSuccessful()
@@ -37,7 +37,7 @@ class HistoricalDataControllerTest {
     public void getHistoricalData_invalid_symbol_test() {
 
         webTestClient.get()
-                .uri("/marketData/eod/latest?symbol=AXV")
+                .uri("/api/v1/marketData/eod/latest?symbol=AXV")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().is4xxClientError()

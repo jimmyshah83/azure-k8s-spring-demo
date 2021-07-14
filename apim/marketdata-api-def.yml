@@ -3,7 +3,7 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-  - url: 'https://k8s-apim.azure-api.net/api/v1/marketData'
+  - url: 'https://k8s-apim-service.azure-api.net/api/v1/marketData'
     description: Generated server url
 paths:
   /eod/latest:

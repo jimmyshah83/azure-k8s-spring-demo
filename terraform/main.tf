@@ -67,7 +67,7 @@ output "kube_config" {
 }
 
 resource "azurerm_api_management" "apim" {
-  name                = "k8s-apim"
+  name                = "k8s-apim-service"
   location            = local.resource_group_location
   resource_group_name = local.resource_group_name
   publisher_name      = "Jimmy Shah"

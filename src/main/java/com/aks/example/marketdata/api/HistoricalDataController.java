@@ -11,7 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/v1/marketData")
+@RequestMapping("/marketData")
 @RequiredArgsConstructor
 @Api(
         value = "marketdata",

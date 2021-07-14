@@ -81,12 +81,11 @@ resource "azurerm_api_management_api" "marketdata-api" {
   resource_group_name = local.resource_group_name
   api_management_name = azurerm_api_management.apim.name
   revision            = "1"
-  display_name        = "Marketdata API"
+  service_url         = "http://52.188.131.153"
   protocols           = ["https"]
 
   import {
     content_format = "openapi"
     content_value  = file(local.marketdata_api_spec)
   }
-  path = ""
 }

@@ -1,7 +1,5 @@
 package com.aks.example.marketdata.api;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -13,10 +11,6 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/marketData")
 @RequiredArgsConstructor
-@Api(
-        value = "marketdata",
-        tags = {"Marketdata API"}
-)
 public class HistoricalDataController {
 
     private final WebClient marketStackWebClient;
@@ -33,7 +27,6 @@ public class HistoricalDataController {
      * @return Latest end of day stock data
      */
     @GetMapping("/eod/latest")
-    @ApiOperation("Fetches EOD data for the given stock")
     public ResponseEntity<Mono<StockDto>> getLatestEodData(@RequestParam String symbol) {
         final Mono<StockDto> stockDtoMono = marketStackWebClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/eod/latest")

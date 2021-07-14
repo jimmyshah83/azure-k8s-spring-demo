@@ -86,7 +86,7 @@ resource "azurerm_api_management_api" "marketdata-api" {
 
   import {
     content_format = "openapi"
-    content_value  = "http://52.188.131.153/v3/api-docs"
+    content_value  = "http://52.188.131.153/v3/api-docs.yaml"
   }
   path = ""
 }

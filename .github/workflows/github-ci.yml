@@ -3,8 +3,6 @@ name: Deploy Spring boot to AKS
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'README.md'
 
 env:
   APP_NAME: marketdata

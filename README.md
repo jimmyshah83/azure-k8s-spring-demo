@@ -19,8 +19,8 @@ We have manually created the resource group and storage account to hold our Terr
    -g <Resource Group name> -l eastus --sku Standard_LRS`
 3. Create storage account container `az storage container create -n <storage account container name> --account-name <storage account name>`
 
-#### Terraform Resources
-<u>Terraform</u>: Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently.
+#### Terraform Resourceschanging
+<u>Terraform</u>: Terraform is a tool for building, , and versioning infrastructure safely and efficiently.
 Terraform has a [registry](https://registry.terraform.io/) that provides plugins that implement the resource types 
 required to maintain the Azure infrastructure. We create the container registry and kubernetes cluster via below 
 plugins provided by terraform registry: 
@@ -47,7 +47,7 @@ access the container registry. \
 Follow the steps in the issue to add API permissions to service principle to fix this issue.
 
 #### Deploying application manually
-Please note that when deploying manually, one needs to only create the resource group as opposed to pipeline where 
+Please note that when deploying manually, one needs to  the resource group as opposed to pipeline where 
 you need to additionally create storage account and storage account container: 
 1. Create Resource Group `az group create --location <region> --name <Resource Group name>`  
 2. Build an image `mvn spring-boot:build-image` OR `docker build -t <App name> .`
